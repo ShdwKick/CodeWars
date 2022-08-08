@@ -1,0 +1,4 @@
+﻿  CodeWars.cpp
+C:\Users\d-aleksandrov\source\repos\CodeWars\CodeWars\CodeWars.cpp(11,5): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\d-aleksandrov\source\repos\CodeWars\CodeWars\CodeWars.cpp(32,38): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+  CodeWars.vcxproj -> C:\Users\d-aleksandrov\source\repos\CodeWars\x64\Debug\CodeWars.exe
