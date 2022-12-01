@@ -1,6 +1,13 @@
 ﻿#include <iostream>
 #include <list>
 #include <regex>
+#include <format>
+#include <cstdio>
+#include <string>
+#include <cctype> 
+#include <algorithm>
+#include <map>
+
 
 using namespace std;
 
@@ -64,7 +71,7 @@ int MakeNegative(int x)
 {
     return (x<0 ? x: (x * (-1)));
 }
-int SunTwoLowestElem(vector <int> arr)
+int SumTwoLowestElem(vector <int> arr)
 {
     sort(arr.begin(), arr.end());
     return arr.at(0)+arr.at(1);
@@ -84,11 +91,91 @@ bool IsPrime(int num)
     }
     return ((x > 2 ) ? true : false);
 }
+bool FindStringInString(string str, string ending)
+{
+    return (ending.length()>0 ? ((str.find(ending,str.length()-ending.length())<str.length()) ? true : false) : true);
+}
+string delim_to_next_upper_char(char delim,string str)
+{
+    string str2;
+    int pos = str.find(delim);
+    str2.push_back((char)toupper((str[pos + 1])));
+    str.replace(str.begin() + (pos + 1), str.begin() + (pos + 2), str2);
+    str.erase(pos, 1);
+    str2 = "";
+    return str;
+}
+string to_camel_case(string str)
+{
+    char delim;
+
+    while (str.find("-") != string::npos || str.find("_") != string::npos)
+    {
+
+        if (str.find("-") != string::npos)
+        {
+            str = delim_to_next_upper_char('-', str);
+        }
+        else if (str.find("_") != string::npos)
+        {
+            str = delim_to_next_upper_char('_',str);
+        }
+    }
+    return str;
+}
+string createPhoneNumber(int arr[])
+{
+    char outString[50];
+    sprintf_s(outString, "(%d%d%d) %d%d%d-%d%d%d%d", arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8], arr[9]);
+    return outString;
+}
+string cleanString(string str) 
+{
+    int pos = 0;
+    while(str.find("#") != string::npos)
+    {
+        pos = str.find("#");
+        if ((pos - 1) >= 0)
+        {
+            str.erase(pos - 1, 2);
+        }
+        else
+        {
+            str.erase(pos, 1);
+        }
+    }
+    return str;
+}
+
+string intToRoman(int num)
+{
+    map<int, char> m{ {1000,'M'}, {500,'D'},{100,'C'},{50,'L'},{10,'X'},{5,'V'},{1,'I'} };
+    int arr[7]{1000,500,100,50,10,5,1};
+    string str = "";
+
+    while (num > 0)
+    {
+         if (num >= 1000)
+         {
+            str.push_back('M');
+            num -= 1000;
+         }
+         else if (num >= 500)
+         {
+            str.push_back('D');
+            num -= 500;
+         }
+        
+    }
+    return str;
+}
+
 
 
 int main()
 {
 #pragma region Kata1-6
+
 #pragma region Kata1
     /* Kata 1
     Complete the function that accepts a string parameter, and reverses each word in the string.All spaces in the string should be retained.
@@ -126,18 +213,23 @@ int main()
     cout << SquareDigitsAndConcatThem(9119) << "\n";*/
 #pragma endregion
 
-//here
 #pragma region Kata4
-   /* Given a list of digits, return the smallest number that could be formed from these digits, using the digits only once(ignore duplicates).
+   /*Assume "#" is like a backspace in string.This means that string "a#bc#d" actually is "bd"
 
-        Notes:
-    Only positive integers will be passed to the function(> 0), no negatives or zeros.
-        Input >> Output Examples
-        minValue({ 1, 3, 1 }) ==> return (13)
-        Explanation :
-        (13) is the minimum number could be formed from {
-        1, 3, 1
-    }, Without duplications*/
+        Your task is to process a string with "#" symbols.
+
+        Examples
+        "abc#d##c" ==> "ac"
+        "abc##d######" ==> ""
+        "#######" ==> ""
+        "" ==> ""
+    */
+
+    /*
+    cout << cleanString("abc#d##c") << "\n";
+    cout << cleanString("abc##d######") << "\n";
+    cout << cleanString("#######") << "\n";
+    */
 
 #pragma endregion
 
@@ -167,7 +259,7 @@ int main()
         [10, 343445353, 3453445, 3453545353453] should return 3453455.*/
 
 
-    //cout << SunTwoLowestElem({ 19, 5, 42, 2, 77 });
+    //cout << SumTwoLowestElem({ 19, 5, 42, 2, 77 });
 
 #pragma endregion
 #pragma endregion
@@ -195,7 +287,89 @@ int main()
 #pragma endregion
 
 
+#pragma region Kata8
+        //Complete the solution so that it returns true if the first argument(string) passed in ends with the 2nd argument(also a string).
+        //
+        //Examples:
+        //
+        //solution('abc', 'bc') // returns true
+        //solution('abc', 'd') // returns false
+;
+       /* cout << FindStringInString("abc","bc") << "\n";
+        cout << FindStringInString("abc", "d") << "\n";
+        cout << FindStringInString("abcde", "cde") << "\n";
+        cout << FindStringInString("abcde", "abc") << "\n";
+        cout << FindStringInString("abc", "") << "\n";*/
 
 #pragma endregion
+
+#pragma region Kata9
+
+        //Write a function that accepts an array of 10 integers(between 0 and 9), that returns a string of those numbers in the form of a phone number.
+       //int arr[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
+       // std::cout << __cplusplus << std::endl;
+       // cout << createPhoneNumber(arr) << "\n";// => returns "(123) 456-7890"
+#pragma endregion
+
+#pragma region Kata10
+    
+    /*Complete the method / function so that it converts dash / underscore delimited words into camel casing.The first word within the output should be capitalized only if the original word was capitalized(known as Upper Camel Case, also often referred to as Pascal case).
+
+    Examples
+    "the-stealth-warrior" gets converted to "theStealthWarrior"
+    "The_Stealth_Warrior" gets converted to "TheStealthWarrior"*/
+    /*  cout << to_camel_case("") << "\n";
+        cout << to_camel_case("the_stealth_warrior") << "\n";
+        cout << to_camel_case("The-Stealth-Warrior") << "\n";
+        cout << to_camel_case("A-B-C") << "\n";
+    */
+
+#pragma endregion
+
+#pragma region Kata11
+
+    /*Complete the method / function so that it converts dash / underscore delimited words into camel casing.The first word within the output should be capitalized only if the original word was capitalized(known as Upper Camel Case, also often referred to as Pascal case).
+
+    Examples
+    "the-stealth-warrior" gets converted to "theStealthWarrior"
+    "The_Stealth_Warrior" gets converted to "TheStealthWarrior"*/
+    /*  cout << to_camel_case("") << "\n";
+        cout << to_camel_case("the_stealth_warrior") << "\n";
+        cout << to_camel_case("The-Stealth-Warrior") << "\n";
+        cout << to_camel_case("A-B-C") << "\n";
+    */
+
+#pragma endregion
+
+
+#pragma region Kata12
+    /*
+    Create a function taking a positive integer as its parameterand returning a string containing the Roman Numeral representation of that integer.
+
+    Modern Roman numerals are written by expressing each digit separately starting with the left most digitand skipping any digit with a value of zero.In Roman numerals 1990 is rendered : 1000 = M, 900 = CM, 90 = XC; resulting in MCMXC. 2008 is written as 2000 = MM, 8 = VIII; or MMVIII. 1666 uses each Roman symbol in descending order : MDCLXVI.
+
+    Example :
+
+        solution(1000); // should return "M"
+    Help:
+
+    Symbol    Value
+    I          1
+    V          5
+    X          10
+    L          50
+    C          100
+    D          500
+    M          1, 000
+    Remember that there can't be more than 3 identical symbols in a row.
+
+    More about roman numerals - http://en.wikipedia.org/wiki/Roman_numerals
+    */
+    cout << intToRoman(1500) << "\n";
+
+#pragma endregion
+
+#pragma endregion
+
 }
 

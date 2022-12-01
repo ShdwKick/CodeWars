@@ -1,4 +1,8 @@
 ﻿  CodeWars.cpp
-C:\Users\d-aleksandrov\source\repos\CodeWars\CodeWars\CodeWars.cpp(11,5): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\d-aleksandrov\source\repos\CodeWars\CodeWars\CodeWars.cpp(32,38): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+  The contents of <format> are available only with C++20 or later.
+C:\Users\d-aleksandrov\source\repos\CodeWars\CodeWars\CodeWars.cpp(18,5): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\d-aleksandrov\source\repos\CodeWars\CodeWars\CodeWars.cpp(39,38): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\d-aleksandrov\source\repos\CodeWars\CodeWars\CodeWars.cpp(101,30): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\d-aleksandrov\source\repos\CodeWars\CodeWars\CodeWars.cpp(110,10): warning C4101: delim: неиспользованная локальная переменная
+C:\Users\d-aleksandrov\source\repos\CodeWars\CodeWars\CodeWars.cpp(137,28): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
   CodeWars.vcxproj -> C:\Users\d-aleksandrov\source\repos\CodeWars\x64\Debug\CodeWars.exe
