@@ -61,10 +61,6 @@ int SquareDigitsAndConcatThem(int n)
         x *= x;
         str.append(to_string(x));
     }
-
-    //cout << str << "\n";
-    
-
     return atoi(str.c_str());
 }
 int MakeNegative(int x)
@@ -146,28 +142,54 @@ string cleanString(string str)
     }
     return str;
 }
-
 string intToRoman(int num)
 {
-    map<int, char> m{ {1000,'M'}, {500,'D'},{100,'C'},{50,'L'},{10,'X'},{5,'V'},{1,'I'} };
-    int arr[7]{1000,500,100,50,10,5,1};
-    string str = "";
-
-    while (num > 0)
+    map<int, string> roman_numerals = {
+        {1000, "M"},
+        {900, "CM"},
+        {500, "D"},
+        {400, "CD"},
+        {100, "C"},
+        {90, "XC"},
+        {50, "L"},
+        {40, "XL"},
+        {10, "X"},
+        {9, "IX"},
+        {5, "V"},
+        {4, "IV"},
+        {1, "I"}
+    };
+    string roman_numeral = "";
+    for (auto it = roman_numerals.rbegin(); it != roman_numerals.rend(); ++it) 
     {
-         if (num >= 1000)
-         {
-            str.push_back('M');
-            num -= 1000;
-         }
-         else if (num >= 500)
-         {
-            str.push_back('D');
-            num -= 500;
-         }
-        
+        while (num >= it->first) 
+        {
+            roman_numeral += it->second;
+            num -= it->first;
+        }
     }
-    return str;
+    return roman_numeral;
+}
+
+bool IsIsogram(string str)
+{
+    if (str.size() > 0)
+    {
+        char letter = str[0];
+        str.erase(0,1);
+        for (char ch : str)
+        {
+            if (ch == letter)
+            {
+                return false;
+            }
+        }
+        return IsIsogram(str);
+    }
+    else
+    {
+        return true;
+    }   
 }
 
 
@@ -365,11 +387,24 @@ int main()
 
     More about roman numerals - http://en.wikipedia.org/wiki/Roman_numerals
     */
-    cout << intToRoman(1500) << "\n";
+    //cout << intToRoman(1666) << "\n";
 
 #pragma endregion
 
 #pragma endregion
 
+#pragma region Kata13-19
+    #pragma region Kata13
+    /*An isogram is a word that has no repeating letters, consecutive or non - consecutive.
+    Implement a function that determines whether a string that contains only letters is an isogram.
+    Assume the empty string is an isogram.Ignore letter case.
+        Example: (Input-- > Output)
+        "Dermatoglyphics" -- > true "aba" -- > false "moOse" -- > false (ignore letter case)*/
+
+    cout << IsIsogram("Dermatoglyphics") <<"\n";
+    cout << IsIsogram("aba") << "\n";
+    #pragma endregion
+
+#pragma endregion
 }
 
