@@ -7,6 +7,7 @@
 #include <cctype> 
 #include <algorithm>
 #include <map>
+#include <cctype>
 
 
 using namespace std;
@@ -171,6 +172,11 @@ string intToRoman(int num)
     return roman_numeral;
 }
 
+bool isTriangle(long long a, long long b, long long c)
+{
+    return (a + b > c && a + c > b && b + c > a);
+}
+
 bool IsIsogram(string str)
 {
     if (str.size() > 0)
@@ -179,9 +185,12 @@ bool IsIsogram(string str)
         str.erase(0,1);
         for (char ch : str)
         {
-            if (ch == letter)
+            if (isalnum(ch))
             {
-                return false;
+                if (ch == letter)
+                {
+                    return false;
+                }
             }
         }
         return IsIsogram(str);
@@ -192,7 +201,16 @@ bool IsIsogram(string str)
     }   
 }
 
-
+int MultiplesOfThreeAndFive(int number)
+{
+    int sum = 0;
+    for (int i = 1; i < number; i++) {
+        if (i % 3 == 0 || i % 5 == 0) {
+            sum += i;
+        }
+    }
+    return sum;
+}
 
 int main()
 {
@@ -400,11 +418,27 @@ int main()
     Assume the empty string is an isogram.Ignore letter case.
         Example: (Input-- > Output)
         "Dermatoglyphics" -- > true "aba" -- > false "moOse" -- > false (ignore letter case)*/
-
+    /*
     cout << IsIsogram("Dermatoglyphics") <<"\n";
     cout << IsIsogram("aba") << "\n";
+    cout << IsIsogram("isogram_or_not") << "\n";*/
+    #pragma endregion
+    
+    #pragma region Kata14
+        /*Implement a function that accepts 3 integer values a, b, c. The function should return true if a triangle can be built with the sides of 
+        given length and false in any other case.
+        (In this case, all triangles must have surface greater than 0 to be accepted).*/
+        /*
+        cout<<isTriangle(2147483647, 2147483647, 2147483647);*/
     #pragma endregion
 
+    #pragma region Kata15
+    /*If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+    Finish the solution so that it returns the sum of all the multiples of 3 or 5 below the number passed in. Additionally, if the number is negative,
+    return 0 (for languages that do have them).
+    Note: If the number is a multiple of both 3 and 5, only count it once.*/
+    cout<<MultiplesOfThreeAndFive(10);
+    #pragma endregion
 #pragma endregion
 }
 

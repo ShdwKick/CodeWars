@@ -1,8 +1,8 @@
 ﻿  CodeWars.cpp
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\format(43): warning STL4038: The contents of <format> are available only with C++20 or later.
-C:\Installs\CodeWars\CodeWars\CodeWars.cpp(18,5): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Installs\CodeWars\CodeWars\CodeWars.cpp(39,38): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Installs\CodeWars\CodeWars\CodeWars.cpp(97,30): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Installs\CodeWars\CodeWars\CodeWars.cpp(106,10): warning C4101: delim: неиспользованная локальная переменная
-C:\Installs\CodeWars\CodeWars\CodeWars.cpp(133,28): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Installs\CodeWars\CodeWars\CodeWars.cpp(19,5): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Installs\CodeWars\CodeWars\CodeWars.cpp(40,38): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Installs\CodeWars\CodeWars\CodeWars.cpp(98,30): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Installs\CodeWars\CodeWars\CodeWars.cpp(107,10): warning C4101: delim: неиспользованная локальная переменная
+C:\Installs\CodeWars\CodeWars\CodeWars.cpp(134,28): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
   CodeWars.vcxproj -> C:\Installs\CodeWars\x64\Debug\CodeWars.exe
